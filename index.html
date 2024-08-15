@@ -1,0 +1,39 @@
+<div class='table-responsive'>
+  <table id="ssptable1" class="table table-bordered" style="width:100% !important;">
+    <thead>
+      <tr class="tr-khi">
+        <th style="width:1%;text-align:center;">NO</th>
+        <th>NAMA</th>
+        <th style="text-align:center;">AKSI</th>
+      </tr>
+    </thead>
+  </table>
+</div>
+<script>
+  $(function() {
+    $('#ssptable1').DataTable({
+      "aLengthMenu":[[10,25,50,100,250,500,1000,5000],[10,25,50,100,250,500,1000,5000]],
+        "responsive" : false,
+        "processing": true,
+        "serverSide": true,
+        "searching":true,
+        "bFilter":false,
+        "bFalse":false,
+        "bSort":true,
+        "order": [[0, 'asc']], // Set default column index (5) and direction (desc)
+        "ajax":{
+          "url": "ssp.html",
+          "dataType": "json",
+          "type": "POST",
+          "data": function(d) {
+            d.filterkaryawan = "<?= $filterkaryawan ?>";
+          }
+        },
+        "columns": [
+          { "data": "NO" },
+          { "data": "NAMA" },
+          { "data": "AKSI" },
+        ]
+    });
+  });
+</script>
